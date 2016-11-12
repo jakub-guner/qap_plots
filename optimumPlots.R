@@ -5,6 +5,7 @@ getOptimum <- Vectorize(function(instance){
          "bur26a" = 5426670,
          "esc32f" = 2,
          "tai40b" = 637250948,
+         "tai50b" = 458821517,
          "tai60a" = 7208572,
          "tai80a" = 13557864,
          "scr12"  = 31410)
