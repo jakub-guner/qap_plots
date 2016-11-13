@@ -8,12 +8,21 @@ getOptimum <- Vectorize(function(instance){
          "tai50b" = 458821517,
          "tai60a" = 7208572,
          "tai80a" = 13557864,
-         "scr12"  = 31410)
+         "scr12"  = 31410,
+         "chr20a" = 2192,
+         "rou20"  = 725522 )
 })
+
+# function for computing mean, DS, max and min values
+min.mean.sd.max <- function(x) {
+  r <- c(min(x), mean(x) - sd(x), mean(x), mean(x) + sd(x), max(x))
+  names(r) <- c("ymin", "lower", "middle", "upper", "ymax")
+  r
+}
 
 makeQualityPlot <- function(df){
   ggplot(df, aes(y=quality, x=algorithm)) + 
-    geom_boxplot() + 
+    stat_summary(fun.data = min.mean.sd.max, geom = "boxplot") +
     theme_bw()
 }
 
