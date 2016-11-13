@@ -6,8 +6,10 @@ source("timePlots.R")
 source("stepsPlots.R")
 source("zad3Plots.R")
 source("zad4Plots.R")
+source("zad23Stats.R")
 
 df <-read.csv("results.csv", strip.white=TRUE)
+df23 <- read.csv("zad2_3.csv", strip.white=TRUE)
 df34 <- read.csv("resultsZad3-4.csv", strip.white=TRUE)
 
 #ordering of categorical features
@@ -20,3 +22,4 @@ saveTimePlots(df)
 saveStepsAndEvalSolutions(df)
 saveZad3Plots(df34)
 saveZad4Plots(df34)
+saveZad23Stats(df23)
