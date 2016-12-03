@@ -23,17 +23,26 @@ min.mean.sd.max <- function(x) {
 makeQualityPlot <- function(df){
   ggplot(df, aes(y=quality, x=algorithm)) + 
     stat_summary(fun.data = min.mean.sd.max, geom = "boxplot") +
-    theme_bw()
+    theme_bw() +
+    theme(axis.title.x=element_blank(), 
+          axis.text=element_text(size=10), 
+          axis.title.y=element_text(size=20)
+          )
 }
 
 saveQualityPlots <-function(df){
   df <- df %>% mutate(quality=getOptimum(instance)/value)
-  df$algorithm <- factor(df$algorithm, levels = c("random", "heuristic", "greedy-2swap", "greedy-3swap", "steepest-2swap", "steepest-3swap"))
+  df$algorithm <- factor(df$algorithm, levels = c("random", "heuristic", 
+                                                  "greedy-2swap",  "simAnn-2swap",
+                                                  "steepest-2swap", "tabu-2swap",
+                                                  "greedy-3swap", "simAnn-3swap",
+                                                  "steepest-3swap", "tabu-3swap")
+                         )
   for (qapInstance in levels(df$instance)){
     instanceDF <- df%>%filter(instance==qapInstance)
     optimumPlot <- makeQualityPlot(instanceDF)
     fileName <-paste(as.character(qapInstance), "Quality.png", sep="")
-    ggsave(fileName, plot = optimumPlot, width = 7, height = 3)
+    ggsave(fileName, plot = optimumPlot, width = 12, height = 3)
   }
   
 }
