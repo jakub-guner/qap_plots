@@ -22,8 +22,8 @@ df$algorithm <- factor(df$algorithm, levels = c("random", "heuristic",
                        )
 
 #creating and saving all plots to PNG files
-# saveQualityPlots(df)
-# saveTimePlots(df)
+saveQualityPlots(df)
+saveTimePlots(df)
 saveStepsAndEvalSolutions(df)
 # saveZad3Plots(df34)
 # saveZad4Plots(df34)
